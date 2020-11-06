@@ -1,0 +1,55 @@
+name: Test
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version:
+          - 3.5
+          - 3.6
+          - 3.7
+          - 3.8
+        django:
+          - dj22
+          - dj30
+          - dj31
+          - djmaster
+        database:
+          - sqlite
+          - postgresql
+          - mariadb
+
+        exclude:
+          - python-version: 3.5
+            django: dj30
+          - python-version: 3.5
+            django: dj31
+          - python-version: 3.5
+            django: djmaster
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Setup PostgreSQL database
+        uses: Daniel-Marynicz/postgresql-action@master
+        with:
+          app_db: test_debug-toolbar
+        if: ${{ matrix.database == 'postgresql' }}
+
+      - name: Install dependencies
+        run: python -m pip install tox
+
+      - name: Run tests
+        run: tox -e ${{ matrix.django }}-${{ matrix.database }}

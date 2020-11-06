@@ -4,45 +4,16 @@ cache: pip
 matrix:
   fast_finish: true
   include:
-    - env: TOXENV=docs
-      before_install:
-        - sudo apt-get -y install libenchant1c2a
-    - env: TOXENV=style
-    - env: TOXENV=readme
-    - python: 3.5
-      env: TOXENV=py35-dj22-sqlite
-    - python: 3.6
-      env: TOXENV=py36-dj22-sqlite
-    - python: 3.7
-      env: TOXENV=py37-dj22-sqlite
-    - python: 3.8
-      env: TOXENV=py38-dj22-sqlite
-    - python: 3.6
-      env: TOXENV=py36-dj30-sqlite
-    - python: 3.7
-      env: TOXENV=py37-dj30-sqlite
-    - python: 3.8
-      env: TOXENV=py38-dj30-sqlite
-    - python: 3.6
-      env: TOXENV=py36-dj31-sqlite
-    - python: 3.7
-      env: TOXENV=py37-dj31-sqlite
-    - python: 3.8
-      env: TOXENV=py38-dj31-sqlite
-    - python: 3.6
-      env: TOXENV=py36-djmaster-sqlite
-    - python: 3.7
-      env: TOXENV=py37-djmaster-sqlite
-    - python: 3.8
-      env: TOXENV=py38-djmaster-sqlite
     - python: 3.8
       env: TOXENV=py38-dj22-postgresql
       addons:
         postgresql: "9.5"
+
     - python: 3.8
       env: TOXENV=py38-dj30-postgresql
       addons:
         postgresql: "9.5"
+
     - python: 3.8
       env: TOXENV=py38-dj31-postgresql DJANGO_SELENIUM_TESTS=True
       before_install:

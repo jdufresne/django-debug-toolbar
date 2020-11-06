@@ -81,7 +81,13 @@ CACHES = {
 
 if os.environ.get("DJANGO_DATABASE_ENGINE") == "postgresql":
     DATABASES = {
-        "default": {"ENGINE": "django.db.backends.postgresql", "NAME": "debug-toolbar"}
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "debug-toolbar",
+            "USER": "app",
+            "PASSWORD": "app",
+            "HOST": "localhost",
+        }
     }
 elif os.environ.get("DJANGO_DATABASE_ENGINE") == "mysql":
     DATABASES = {
