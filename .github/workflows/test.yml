@@ -44,6 +44,8 @@ jobs:
 
       - name: Setup PostgreSQL
         uses: harmon758/postgresql-action@v1
+        with:
+          postgresql db: test_debug-toolbar
         if: ${{ matrix.database == 'postgresql' }}
 
       - name: Install dependencies

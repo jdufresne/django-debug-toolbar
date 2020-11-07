@@ -84,8 +84,6 @@ if os.environ.get("DJANGO_DATABASE_ENGINE") == "postgresql":
         "default": {
             "ENGINE": "django.db.backends.postgresql",
             "NAME": "debug-toolbar",
-            "USER": "app",
-            "PASSWORD": "app",
             "HOST": "localhost",
         }
     }
