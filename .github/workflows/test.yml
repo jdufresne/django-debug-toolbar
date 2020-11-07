@@ -42,10 +42,8 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Setup PostgreSQL database
-        uses: Daniel-Marynicz/postgresql-action@master
-        with:
-          app_db: test_debug-toolbar
+      - name: Setup PostgreSQL
+        uses: harmon758/postgresql-action@v1
         if: ${{ matrix.database == 'postgresql' }}
 
       - name: Install dependencies
