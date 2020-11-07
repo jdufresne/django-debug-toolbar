@@ -46,6 +46,7 @@ jobs:
         uses: harmon758/postgresql-action@v1
         with:
           postgresql db: test_debug-toolbar
+          postgresql user: ${{ env.USER }}
         if: ${{ matrix.database == 'postgresql' }}
 
       - name: Install dependencies
